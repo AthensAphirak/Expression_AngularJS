@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body ng-init="names=[{'name': 'Athens', 'country': 'Thailand', 'salary': 550000},
+{'name': 'AthensDavi', 'country': 'USA', 'salary': 950000},
+{'name': 'Noah', 'country': 'USA', 'salary': 250000},
+{'name': 'Jack', 'country': 'UK', 'salary': 150000}
+]">
+    <div class="container">
+        <h2>AngularJS</h2>
+        <input type="text" class="form-control" ng-model="queryString.name" placehoder="Filter by">
+
+        <input type="radio" value="name" ng-model="sortString"> Sorted by Name
+        <input type="radio" value="-name" ng-model="sortString"> Sorted by Name (Descending)
+        <input type="radio" value="country" ng-model="sortString"> Sorted by Country
+        <p>{{ sortString }}</p>
+        <table class="table">
+            <tr ng-repeat="n in names | filter:queryString | orderBy:sortString">
+                <td>{{ n.name }}</td>
+                <td>{{ n.country }}</td>
+                <td>{{ n.salary | currency:'THB ' }}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="/bower_components/angular/angular.js"></script> 
+</body>
+</html>
